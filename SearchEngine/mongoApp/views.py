@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import counter, displayData
+from .models import displaySearch
 
 # Create your views here.
 
@@ -8,7 +8,6 @@ def mongoView(request):
         request,
         'mongoTemplate.html',
         {
-            'counterValue' : counter(),
-            'displayData' : displayData(),
+            'displaySearch' : displaySearch(),
         }
     )

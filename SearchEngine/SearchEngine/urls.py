@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from mongoApp.views import mongoView
 # from firebaseApp.views import firebaseView
+from algoliaApp.views import algoliaView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mongoUrl/', mongoView),
     # path('firebaseUrl/', firebaseView),
+    path('algoliaUrl/', algoliaView),
 ]

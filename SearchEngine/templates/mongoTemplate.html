@@ -1,14 +1,10 @@
 {% load static %}
 <html>
     <head>
-        <p>mongo head</p>
+        <p>mongo search</p>
     </head>
     <body>
-        as always, first step is counting <br>
-        counter : {{counterValue}}
-        <form action="/mongoUrl/" method="POST"> {% csrf_token %}
-            <input type="submit" value="++">
-        </form>
-        {{displayData}}
+        <br>---------------------------------------------------------------------<br>
+        {{displaySearch}}
     </body>
 </html>
