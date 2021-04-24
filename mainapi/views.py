@@ -27,13 +27,11 @@ def displaySearch(input_string):
                 'index': 'default',
                 'text': {
                     'query': 'android',
-                    'path': [
-                        'url', 'text'
-                    ]
+                    'path': 'url'
                 }
             }
         },
-        {'$project': {'_id': 0, 'url': 1, 'text': 1}}
+        {'$sort': {'score': {'$meta': "textScore"}}},
     ])
     # s.sort([('score', {'$meta': 'textScore'})])
     s = list(s)
