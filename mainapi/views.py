@@ -32,7 +32,8 @@ def displaySearch(input_string):
                     ]
                 }
             }
-        }
+        },
+        {'$project': {'_id': 0, 'url': 1, 'text': 1}}
     ])
     # s.sort([('score', {'$meta': 'textScore'})])
     s = list(s)
