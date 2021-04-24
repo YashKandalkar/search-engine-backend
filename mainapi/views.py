@@ -14,9 +14,9 @@ db = client["myDB3"]
 # Collection
 col = db.collection5
 
-col.create_index([
-    ("url", "text"), ("text", "text")
-])
+# col.create_index([
+#     ("url", "text"), ("text", "text")
+# ])
 
 
 def displaySearch(input_string):
