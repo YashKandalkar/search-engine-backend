@@ -8,6 +8,6 @@ def mongoView(request):
         request,
         'mongoTemplate.html',
         {
-            'displaySearch' : displaySearch(),
+            'displaySearch' : displaySearch("string"),
         }
     )

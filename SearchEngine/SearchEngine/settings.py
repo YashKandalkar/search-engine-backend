@@ -40,11 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #trying db
+    # mongoDB
     'mongoApp',
-    'firebaseApp',
-
-    'algoliaApp',
 ]
 
 MIDDLEWARE = [
