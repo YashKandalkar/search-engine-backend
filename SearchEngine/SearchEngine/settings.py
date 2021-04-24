@@ -123,11 +123,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-#########################################################################
-# algolia asked to add this
-ALGOLIA = {
-    'APPLICATION_ID': '2P65DVMJ1J',
-    'API_KEY': '69cf5ae95ffbed6f5eca1520d7de0562'
-}
