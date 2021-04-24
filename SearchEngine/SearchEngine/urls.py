@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mongoApp.views import mongoView
+from mainapi.views import search
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('mongoUrl/', mongoView),
+    # path('admin/', admin.site.urls),
+    path('search', search)
 ]
