@@ -3,4 +3,5 @@ gunicorn
 django-heroku
 django-cors-headers
 pymongo
-"pymongo[srv]"
+pymongo[srv]
+dnspython
