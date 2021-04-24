@@ -25,7 +25,7 @@ def displaySearch(input_string):
         {"$text": {"$search": 'i want some help"'}},
         {'score': {'$meta': 'textScore'}, '_id': 0}
     )
-    s.sort([('score', {'$meta': 'textScore'})])
+    # s.sort([('score', {'$meta': 'textScore'})])
     s = list(s)
     s = s[:15]
     return s
