@@ -20,21 +20,20 @@ col = db.collection5
 
 
 def displaySearch(input_string):
-
+    print(input_string)
     s = col.aggregate([
         {
             '$search': {
                 'index': 'default',
                 'text': {
-                    'query': 'android',
+                    'query': input_string,
                     'path': 'url'
                 }
             }
         },
         {'$sort': {'score': {'$meta': "textScore"}}},
-        {'$project': {'_id': 0, 'url': 1, 'text': 1, 'score': 1}}
+        {'$project': {'_id': 0}}
     ])
-    # s.sort([('score', {'$meta': 'textScore'})])
     s = list(s)
     s = s[:15]
     return s
