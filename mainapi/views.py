@@ -1,12 +1,14 @@
-from django.shortcuts import render
-
-from django.http import JsonResponse
-from urllib.parse import unquote, urlparse, parse_qs
 import pymongo
+from urllib.parse import unquote, urlparse, parse_qs
+from django.http import JsonResponse
+from django.shortcuts import render
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # MongoDB client
-client = pymongo.MongoClient(
-    "mongodb+srv://adminuser:adminuserpassword@cluster0.tilcf.mongodb.net/myDB2?retryWrites=true&w=majority")
+client = pymongo.MongoClient(os.environ["MONGOURL"])
 
 # Database Name
 db = client["myDB3"]
@@ -14,9 +16,6 @@ db = client["myDB3"]
 # Collection
 col = db.collection5
 
-# col.create_index([
-#     ("url", "text"), ("text", "text")
-# ])
 
 count = 1
 

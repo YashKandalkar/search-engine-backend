@@ -5,3 +5,4 @@ django-cors-headers
 pymongo
 pymongo[srv]
 dnspython
+python-dotenv
