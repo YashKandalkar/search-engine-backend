@@ -19,8 +19,7 @@ col = db.collection5
 # ])
 
 
-def displaySearch(input_string):
-    print(input_string)
+def displaySearch(input_string, page=1):
     s = col.aggregate([
         {
             '$search': {
@@ -35,17 +34,28 @@ def displaySearch(input_string):
         {'$project': {'_id': 0}}
     ])
     s = list(s)
-    s = s[:15]
+    if 15*page > len(list(s)) :
+        s = s[ 15*(page-1) : 15*page ]
+    elif len(list(s)) > 16:
+        s = s[ : 15]
     return s
 
 
 def search(request):
     s = request.get_raw_uri()
+
+    print("s ", s)
+    print("p ", parse_qs(urlparse(s).query))
+
     text = parse_qs(urlparse(s).query)["text"][0]
     text = unquote(text)
 
+    page = 1
+    if "page" in parse_qs(urlparse(s).query) :
+        page = int( parse_qs(urlparse(s).query)["page"][0] )
+
     responseData = {
-        'result': displaySearch(text)
+        'result': displaySearch(text, page)
     }
 
     return JsonResponse(responseData)
