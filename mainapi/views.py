@@ -1,4 +1,6 @@
 import pymongo
+import requests
+import json
 from urllib.parse import unquote, urlparse, parse_qs
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -15,9 +17,15 @@ db = client["myDB3"]
 
 # Collection
 col = db.collection5
-
-
 count = 1
+
+
+def make_request(user_search):
+
+    print("searching for " + user_search + " with SO api.")
+    resp = requests.get("https://api.stackexchange.com/" +
+                        f"/2.2/search/advanced?order=desc&sort=activity&title={user_search}&site=stackoverflow")
+    return resp.json()
 
 
 def displaySearch(input_string, page=1):
@@ -38,6 +46,16 @@ def displaySearch(input_string, page=1):
 
     global count
     count = len(s)
+
+    if count < 15:
+        print("Fetching from SO API !")
+        res = make_request(input_string)
+        formatted = []
+        for i in res['items']:
+            t = {'url': i['link'], 'title': i['title'],
+                 'tags': i['tags'], 'text': "no text"}
+            formatted.append(t)
+        s.extend(formatted)
 
     if len(list(s)) > 16:
         s = s[15*(page-1): 15*page]
