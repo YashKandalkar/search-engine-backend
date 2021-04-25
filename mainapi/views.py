@@ -20,6 +20,7 @@ col = db.collection5
 
 count = 1
 
+
 def displaySearch(input_string, page=1):
     s = col.aggregate([
         {
@@ -39,10 +40,10 @@ def displaySearch(input_string, page=1):
     global count
     count = len(s)
 
-    if 15*page > len(list(s)) :
-        s = s[ 15*(page-1) : 15*page ]
-    elif len(list(s)) > 16:
-        s = s[ : 15]
+    if len(list(s)) > 16:
+        s = s[15*(page-1): 15*page]
+    elif 15*page > len(list(s)):
+        s = s[: 15]
 
     return s
 
@@ -54,14 +55,14 @@ def search(request):
     text = unquote(text)
 
     page = 1
-    if "page" in parse_qs(urlparse(s).query) :
-        page = int( parse_qs(urlparse(s).query)["page"][0] )
+    if "page" in parse_qs(urlparse(s).query):
+        page = int(parse_qs(urlparse(s).query)["page"][0])
 
     result = displaySearch(text, page)
 
     responseData = {
         'result': result,
-        'count' : count
+        'count': count
     }
 
     return JsonResponse(responseData)
