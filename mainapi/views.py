@@ -66,20 +66,21 @@ def displaySearch(input_string, page=1):
 
 
 def search(request):
-    s = request.get_raw_uri()
+    if(request.method == "GET"):
+        s = request.get_raw_uri()
 
-    text = parse_qs(urlparse(s).query)["text"][0]
-    text = unquote(text)
+        text = parse_qs(urlparse(s).query)["text"][0]
+        text = unquote(text)
 
-    page = 1
-    if "page" in parse_qs(urlparse(s).query):
-        page = int(parse_qs(urlparse(s).query)["page"][0])
+        page = 1
+        if "page" in parse_qs(urlparse(s).query):
+            page = int(parse_qs(urlparse(s).query)["page"][0])
 
-    result = displaySearch(text, page)
+        result = displaySearch(text, page)
 
-    responseData = {
-        'result': result,
-        'count': count
-    }
+        responseData = {
+            'result': result,
+            'count': count
+        }
 
-    return JsonResponse(responseData)
+        return JsonResponse(responseData)
